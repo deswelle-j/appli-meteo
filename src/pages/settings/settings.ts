@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-settings',
+  templateUrl: 'settings.html',
 })
-export class HomePage {
+export class SettingsPage {
   city = 'Hulluch';
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
     private storage: Storage
   ) {
-  }
-
-  ionViewWillEnter () {
     this.storage.get('city').then(city => {
       if (null !== city) {
         this.city = city;
@@ -23,4 +21,7 @@ export class HomePage {
     });
   }
 
+  save () {
+    this.storage.set('city', this.city);
+  }
 }
