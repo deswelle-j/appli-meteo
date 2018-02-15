@@ -10,32 +10,32 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
+  <ion-grid *ngIf="weather">
     <ion-row>
       <ion-col col-6 offset-3>
         <h2>{{ city }}</h2>
-        <div><img src="https://openweathermap.org/img/w/04d.png" alt="{{ city }}"></div>
-        <h3>Description</h3>
-        <h4>10 &deg;C</h4>
+        <div><img src="https://openweathermap.org/img/w/{{ weather.weather[0].icon }}.png" alt="{{ city }}"></div>
+        <h3>{{ weather.weather[0].main }}</h3>
+        <h4>{{ weather.main.temp - 273.15 | number:'1.2-2'  }} &deg;C</h4>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-list>
           <ion-item>
-            <strong>Pression: </strong> 1005
+            <strong>Pression: </strong> {{ weather.main.pressure }}
           </ion-item>
           <ion-item>
-            <strong>Humidité: </strong> 52 %
+            <strong>Humidité: </strong> {{ weather.main.humidity }}
           </ion-item>
           <ion-item>
-            <strong>Lever du soleil: </strong> 08:03
+            <strong>Lever du soleil: </strong> {{ weather.sys.sunrise * 1000 | date:'shortTime'}}
           </ion-item>
           <ion-item>
-            <strong>Coucher du soleil: </strong> 18:03
+            <strong>Coucher du soleil: </strong> {{ weather.sys.sunset *1000 | date:'shortTime'}}
           </ion-item>
           <ion-item>
-            <strong>Coordonnées: </strong> 50.49, 2.81
+            <strong>Coordonnées: </strong> {{ weather.coord.lat }}°Nord {{ weather.coord.lon }}°Est
           </ion-item>
         </ion-list>
       </ion-col>
