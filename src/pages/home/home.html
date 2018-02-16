@@ -15,7 +15,7 @@
       <ion-col col-6 offset-3>
         <h2>{{ city }}</h2>
         <div><img src="https://openweathermap.org/img/w/{{ weather.weather[0].icon }}.png" alt="{{ city }}"></div>
-        <h3>{{ weather.weather[0].main }}</h3>
+        <h3>{{ weather.weather[0].description }}</h3>
         <h4>{{ weather.main.temp - 273.15 | number:'1.2-2'  }} &deg;C</h4>
       </ion-col>
     </ion-row>
